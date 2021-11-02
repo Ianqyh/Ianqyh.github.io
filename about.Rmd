@@ -1,0 +1,24 @@
+---
+title: "About"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+# Academic Experience
+
+I finished my undergraduate study at the University of Toronto, specializing in Psychology and majoring in Statistics. I received several scholarships throughout the whole study period and was also graduated as a BS student with high distinction.
+
+# Research Experience
+
+I volunteered as a research assistant at The Duncan Lab, helping
+recruit and run participants. My research topic at this lab was how temporal delay affects spatial memory. The results showed that shorter temporal delay between two similar environments will lead to more confusion in general compared to longer temporal delay. In addition, I once conducted an independent study at Motivation and Social Cognition lab under the supervision of Dr.Plaks. My research topic was the contribution of implicit theories of willpower to age differences in cognitive performance. The results showed that people’s implicit theories of power would shorten the gap between cognitive performance of different age groups, such that older people with unlimited beliefs about willpower would perform significantly better in cognitive tests compared to those with limited beliefs about willpower, and even may be comparable to the level of younger people.
+
+# Professional Experience
+
+I once worked as a data analyzer at Psykick Inc, which is an organization launched by psychology and Rotman students at University of Toronto dedicated to building a platform to help young people better communicate with each other. During employment period, I constructed a data analysis strategy that could deliver accurate and informative results from the dataset obtained by having people filled out relevant questionnaires.
+
+
+Here's back to the [index](index.html) page.
