@@ -1,0 +1,13 @@
+---
+title: "Yihan Qiu's Website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Hello!
+
+Welcome to my website! My name is Yihan Qiu. I'm currently a first-year MS biostatistics student in Columbia University. Click [about](about.html) page to know more about me.
+
+
