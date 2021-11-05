@@ -1,0 +1,78 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+
+
+```{r}
+data("instacart")
+```
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A: Mean ordered hour for each day of the week for top 5 most popular products
+
+```{r}
+top_5_products = 
+  instacart %>%
+  group_by(product_name) %>%
+  summarize(total = n()) %>%
+  arrange(desc(total)) %>%
+  head(5) %>%
+  mutate(product_name = fct_reorder(product_name, total))
+
+instacart %>%
+  filter(product_name %in% top_5_products$product_name) %>%
+  group_by(product_name, order_dow) %>%
+  summarize(mean_ordered_hour = mean(order_hour_of_day)) %>%
+  mutate(day_of_the_week = factor(order_dow, levels = c("0", "1", "2", "3", "4", "5", "6"), labels = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thurday", "Friday", "Saturday"))) %>%
+  plot_ly(x = ~day_of_the_week, y = ~mean_ordered_hour, color = ~product_name, type = "scatter", mode = "lines+markers")
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B: Top 5 departments with most number of products ordered from
+
+```{r}
+instacart %>%
+  group_by(department) %>%
+  summarize(order_times = n()) %>%
+  arrange(desc(order_times)) %>%
+  head(5) %>%
+  mutate(department = fct_reorder(department, order_times)) %>%
+  plot_ly(x = ~department, y = ~order_times, type = "bar", color = ~department)
+```
+
+### Chart C: Distribution of the number of 20 most popular products ordered for 5 most popluar aisles
+
+```{r}
+top_5_aisles = 
+  instacart %>%
+  group_by(aisle) %>%
+  summarize(counts = n()) %>%
+  arrange(desc(counts)) %>%
+  head(5) %>%
+  mutate(aisle = fct_reorder(aisle, counts))
+
+instacart %>%
+  filter(aisle %in% top_5_aisles$aisle) %>%
+  group_by(aisle, product_name) %>%
+  summarize(order_times = n()) %>%
+  mutate(rank = min_rank(desc(order_times))) %>%
+  filter(rank <= 20) %>%
+  arrange(aisle, rank) %>%
+  plot_ly(x = ~aisle, y = ~order_times, color = ~aisle, type = "violin")
+```
